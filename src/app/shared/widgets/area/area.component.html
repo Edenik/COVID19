@@ -1,0 +1,24 @@
+<div class="center" style="margin-top: 10px;">
+    <mat-form-field>
+        <mat-label>{{'range area' | translate}} </mat-label>
+        <mat-select>
+            <mat-option [value]="7" (click)="showGraph(7)">
+                {{'last 7 days' | translate}}
+            </mat-option>
+            <mat-option [value]="14" (click)="showGraph(14)">
+                {{'last 14 days' | translate}}
+            </mat-option>
+            <mat-option [value]="30" (click)="showGraph(30)">
+                {{'last 30 days' | translate}}
+            </mat-option>
+            <mat-option [value]="0" (click)="showGraph(0)">
+                {{'since day 1' | translate}}
+            </mat-option>
+
+        </mat-select>
+    </mat-form-field>
+</div>
+<div style="padding: 15px;">
+    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
+        style="max-width: 820px; height: 400px; display: block;" class="mat-elevation-z8"></highcharts-chart>
+</div>

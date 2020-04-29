@@ -1,0 +1,30 @@
+<h1 class="page-title">{{'Saved Countries' | translate}}:</h1>
+
+<div *ngIf="countriesReport[0]">
+  <app-expand-table [data]="countriesReport"></app-expand-table>
+  <app-widgets-stacked [data]="countriesReport"></app-widgets-stacked>
+
+  <!-- <app-table [data]="countriesReport"></app-table>  -->
+</div>
+
+<div *ngIf="savedCountries.length==0" class="center">
+  <h3>{{'Save Countries' | translate}}!</h3>
+</div>
+
+<div *ngIf="savedCountries.length==0" class="center">
+  <a routerLink="/index">
+    <img src="./assets/images/save-country.png" alt="" class="mat-elevation-z10" style="max-width: 250px;">
+  </a>
+</div>
+
+
+<div *ngIf="!countriesReport[0] && savedCountries.length!=0 && !error" class="center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="error">
+  <h1 class="center">{{'data error' | translate}} </h1>
+  <h2 class="center">{{'server error' | translate}} </h2>
+</div>
+
+

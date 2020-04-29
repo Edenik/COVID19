@@ -1,0 +1,171 @@
+<div class="center" style="margin-top: 10px;" *ngIf="router.url === '/saved'">
+  <mat-card style="padding: 0 16px 0 16px;">
+    <mat-form-field>
+      <mat-label>{{'Sort By' | translate}} </mat-label>
+      <mat-select>
+        <mat-option [value]="1" (click)="sort('cases')">
+          {{'Total Cases' | translate}}
+        </mat-option>
+        <!-- <mat-option [value]="1" (click)="sort('todayCases')">
+                  {{'New Cases' | translate}}
+              </mat-option> -->
+        <mat-option [value]="1" (click)="sort('casesPerOneMillion')">
+          {{'Cases per 1Mil' | translate}}
+        </mat-option>
+        <mat-option [value]="1" (click)="sort('deaths')">
+          {{'Total Deaths' | translate}}
+        </mat-option>
+        <!-- <mat-option [value]="1" (click)="sort('todayDeaths')">
+                  {{'New Deaths' | translate}}
+              </mat-option> -->
+        <mat-option [value]="1" (click)="sort('deathsPerOneMillion')">
+          {{'Deaths per 1Mil' | translate}}
+        </mat-option>
+        <mat-option [value]="1" (click)="sort('active')">
+          {{'Active' | translate}}
+        </mat-option>
+        <mat-option [value]="1" (click)="sort('critical')">
+          {{'Critical' | translate}}
+        </mat-option>
+        <mat-option [value]="1" (click)="sort('recovered')">
+          {{'Recovered' | translate}}
+        </mat-option>
+        <mat-option [value]="1" (click)="sort('tests')">
+          {{'Tests' | translate}}
+        </mat-option>
+        <!-- <mat-option [value]="1" (click)="sort('testsPerOneMillion')">
+                  {{'Tests per 1Mil' | translate}}
+              </mat-option> -->
+
+
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+
+</div>
+
+<mat-card class="table-container mat-elevation-z10" style="margin-top: 15px; padding: 0 16px 0 16px;">
+  <mat-form-field style="width: 100%;">
+    <mat-label>{{'Filter' | translate }}</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="{{'Filter' | translate }}">
+  </mat-form-field>
+</mat-card>
+
+
+
+<div class="scroll-tip">
+  <h4>{{'scroll' | translate}}</h4>
+</div>
+
+<div class="table-container mat-elevation-z10">
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+    <ng-container matColumnDef="Country" sticky>
+      <th mat-header-cell *matHeaderCellDef class="country">{{'Country' | translate}}</th>
+      <td mat-cell *matCellDef="let country" class="country">
+        <button mat-icon-button color="warn" *ngIf="!savedCountries.includes(country.country)" class="fav-icon"
+          (click)="saveCountry(country.country)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" *ngIf="savedCountries.includes(country.country)" class="fav-icon"
+          (click)="deleteCountry(country.country)">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <div>
+          <img class="flag mat-elevation-z10" src="{{country.flag}}" style="width: 25px; height: 15px;">
+          {{country.country}}
+        </div>
+      </td>
+    </ng-container>
+
+    <div class="upside">
+      <ng-container matColumnDef="Total Cases">
+        <th mat-header-cell *matHeaderCellDef class="td-pad-more">{{'Total Cases' | translate}}</th>
+        <td mat-cell *matCellDef="let country" class="td-pad-more td-up"> <span [countUp]="country.cases">0</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="New Cases">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'New Cases' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.todayCases">0</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Cases per 1 mil">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'Cases per 1Mil' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.casesPerOneMillion">0</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Total Deaths">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'Total Deaths' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.deaths">0</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="New Deaths">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'New Deaths' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.todayDeaths">0</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Deaths per 1 mil">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'Deaths per 1Mil' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.deathsPerOneMillion">0</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Active">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'Active' | translate }} </th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.active">0</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Critical">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'Critical' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.critical">0</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Recovered">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'Recovered' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.recovered">0</span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Tests">
+        <th mat-header-cell *matHeaderCellDef class="td-pad">{{'Tests' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.tests">0</span> </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="Tests per 1Mil">
+        <th mat-header-cell *matHeaderCellDef  class="td-pad">{{'Tests per 1Mil' | translate }}</th>
+        <td mat-cell *matCellDef="let country" class="td-up"> <span [countUp]="country.testsPerOneMillion">0</span>
+        </td>
+      </ng-container> -->
+    </div>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let country" [attr.colspan]="columnsToDisplay.length" class="cell">
+        <div class="example-element-detail" [@detailExpand]="country == expandedElement ? 'expanded' : 'collapsed'"
+          (@detailExpand.start)="animStart($event)" (@detailExpand.done)="animEnd($event)">
+          <mat-tab-group style="width: 100%;">
+            <mat-tab label="{{'Historical Report' | translate}}">
+              <app-historical-reports [country]="country.country" *ngIf="country == expandedElement">
+              </app-historical-reports>
+            </mat-tab>
+            <mat-tab label="{{'Country Info' | translate}}">
+              <app-country-info [country]="country.country" *ngIf="country == expandedElement"></app-country-info>
+            </mat-tab>
+
+          </mat-tab-group>
+
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+</div>
+
+<mat-card class="table-container mat-elevation-z10" style="padding: 0 16px 0 16px;">
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]">
+  </mat-paginator>
+</mat-card>

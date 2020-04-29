@@ -1,0 +1,41 @@
+$iconWidth: 56px;
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.title {
+  text-shadow: 0 0 5px #333, 0 0 10px #333, 0 0 15px #333, 0 0 15px #fff, 0 0 30px #fff;
+}
+
+img {
+  box-sizing: content-box;
+  margin-top: 6px;
+  border-style: none;
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.849);
+  border-radius: 50%;
+  padding: 3px;
+  box-shadow: 0 0 5px #333, 0 0 10px #333, 0 0 20px #fff;
+}
+
+.sidenav-toggle {
+  display: none;
+  padding: 0;
+  margin: 8px;
+  min-width: $iconWidth;
+
+  @media (max-width: 720px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  mat-icon {
+    font-size: 30px;
+    height: $iconWidth;
+    width: $iconWidth;
+    line-height: $iconWidth;
+    color: white;
+  }
+}

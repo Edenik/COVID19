@@ -1,0 +1,22 @@
+
+footer{
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    height: 40px;
+    width: 100%;
+    background-color: #fafafa;
+
+    .copy{
+        padding: 0px 15px 20px 15px;
+        font-size: 16px;
+    }
+
+    a {   
+        color: inherit;
+     }
+}
+
+
+
+  

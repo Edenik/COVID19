@@ -1,0 +1,18 @@
+
+<div *ngIf="error">
+    <h1 class="center">{{'data error' | translate}}   </h1>
+    <h2 class="center">{{'server error' | translate}} </h2>
+</div>
+
+<div *ngIf="!dates[0] && !error" class="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="dates[0]">
+    <app-widgets-area *ngIf="data[1]" [dates]="dates" [deaths]="deaths" [recovered]="recovered" [country]="country" [cases]="cases" style="padding: 15px;"></app-widgets-area>
+</div>
+
+
+
+
+ 

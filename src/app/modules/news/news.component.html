@@ -1,0 +1,40 @@
+<h1 class="page-title">{{'news' | translate}}:</h1>
+
+<div *ngIf="!news[0] && !error" class="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+
+<div *ngIf="error">
+    <h1 class="center">{{'news error' | translate}} </h1>
+    <h2 class="center">{{'server error' | translate}} </h2>
+</div>
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex start" class="fxLayout">
+    <ng-container *ngFor="let report of news">
+        <div fxFlex="0 1 calc(33% - 32px)" fxFlex.lt-lg="0 1 calc(50% - 32px)" fxFlex.lt-md="100%"
+            fxFlex.lt-sm="calc(100% - 32px)">
+
+            <mat-card class="country-card mat-elevation-z10" style="margin-bottom: 32px;">
+                <mat-card-content>
+                    <h2 style="margin-bottom: 5px;">{{report.title}} <span>- {{report.author}}</span></h2>
+                    <mat-divider></mat-divider>
+                    <img mat-card-image *ngIf="report.urlToImage!=null" style="margin-bottom: 0;"
+                        src="{{report.urlToImage}}" alt="Photo of this article">
+
+                    <p>{{report.description}}</p>
+                    <p><i class="fas fa-rss"></i> {{'source' | translate}}: {{report.source}}</p>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+
+                <mat-card-actions>
+                    <a mat-button href="{{report.url}}" target="_blank"><i
+                            class="fas fa-book-open"></i>&nbsp;{{'read more' | translate}}</a>
+                    <button mat-button><i
+                            class="fas fa-history"></i>&nbsp;{{report.publishedAt | date:'dd/MM, HH:mm'}}</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </ng-container>
+</div>

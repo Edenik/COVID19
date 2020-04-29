@@ -1,0 +1,131 @@
+<mat-sidenav-container class="app-sidenav-container mat-elevation-z10" [dir]="dir" [class.dark-theme]="isDarkTheme">
+  <mat-sidenav #sidenav class="app-sidenav mat-elevation-z10" [opened]="!isScreenSmall()"
+    [mode]="isScreenSmall() ? 'over' : 'side'">
+    <mat-toolbar class=" mat-elevation-z10" color="primary">
+      {{'Menu' | translate}}
+
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <mat-list-item>
+        <a matLine [routerLink]="['/index']">
+          <mat-icon>assessment</mat-icon>
+          &nbsp;&nbsp;<span>{{'Reports' | translate}}</span>
+        </a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matLine [routerLink]="['/saved']">
+          <mat-icon>favorite_border</mat-icon>
+          &nbsp;&nbsp;<span>{{'Saved Countries' | translate}}</span>
+        </a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matLine [routerLink]="['/news']">
+          <mat-icon>watch_later</mat-icon>
+          &nbsp;&nbsp;<span>{{'news' | translate}}</span>
+        </a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matLine [routerLink]="['/about']">
+          <mat-icon>live_help</mat-icon>
+          &nbsp;&nbsp;<span>{{'About' | translate}}</span>
+        </a>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <a matLine (click)="toggleTheme()">
+          <mat-icon>format_paint</mat-icon>
+          &nbsp;&nbsp;
+          <span *ngIf="isDarkTheme">{{ 'Toggle light theme'| translate}}</span>
+          <span *ngIf="!isDarkTheme">{{ 'Toggle dark theme'| translate}}</span>
+        </a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a matLine (click)="toggleLang()">
+          <mat-icon>translate</mat-icon>
+          &nbsp;&nbsp;<span>{{  'Toggle language'  | translate }}</span>
+        </a>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="Pwa.promptEvent">
+        <a matLine (click)="installPwa()">
+          <mat-icon>system_update</mat-icon>
+          &nbsp;&nbsp;<span>{{'Install App' | translate}}</span>
+        </a>
+      </mat-list-item>
+
+
+
+
+
+
+      <mat-divider></mat-divider>
+
+      <mat-nav-list>
+        <mat-list-item (click)="menuTrigger.openMenu()">
+
+          <div mat-line>
+            <mat-icon>share</mat-icon>
+            <span>&nbsp;&nbsp;{{'Share App' | translate}}</span>
+          </div>
+
+          <button mat-icon-button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-menu #menu="matMenu">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fedenik.com%2FCOVID19%2F&amp;src=sdkpreparse"
+            target="_blank" mat-menu-item
+            [ngStyle]="{'background-color' : isDarkTheme ? '#424242' : 'white'  ,'color' : isDarkTheme ? '#ffffff' : '#424242' }">
+            <i class="fab fa-facebook-square" style="font-size:larger"></i>
+            Facebook
+          </a>
+          <a href="https://twitter.com/intent/tweet?text={{'Check App' | translate}}" target="_blank" data-size="large"
+            mat-menu-item
+            [ngStyle]="{'background-color' : isDarkTheme ? '#424242' : 'white'  ,'color' : isDarkTheme ? '#ffffff' : '#424242' }">
+            <i class="fab fa-twitter-square" style="font-size:larger"></i>
+            Twitter</a>
+
+          <a href="whatsapp://send?text=Check%20this%20Covid-19%20Tracker%20App%3A%20Https%3A%2F%2FEdenik.com%2FCOVID19"
+            mat-menu-item *ngIf="isMobile"
+            [ngStyle]="{'background-color' : isDarkTheme ? '#424242' : 'white'  ,'color' : isDarkTheme ? '#ffffff' : '#424242' }">
+            <i class="fab fa-whatsapp-square" style="font-size:larger"></i>
+            Whatsapp</a>
+
+          <a href="https://web.whatsapp.com/send?text={{'Check App Whatsapp' | translate}}" target="_blank"
+            mat-menu-item *ngIf="!isMobile"
+            [ngStyle]="{'background-color' : isDarkTheme ? '#424242' : 'white'  ,'color' : isDarkTheme ? '#ffffff' : '#424242' }">
+            <i class="fab fa-whatsapp-square" style="font-size:larger"></i>
+            Whatsapp</a>
+        </mat-menu>
+      </mat-nav-list>
+
+      <mat-list-item>
+        <a matLine>
+          <mat-icon>update</mat-icon>
+          &nbsp;&nbsp;<span>{{'Updated' | translate}}: {{lastUpdate | date:'dd/MM/yy, HH:mm'}}</span>
+        </a>
+      </mat-list-item>
+
+    </mat-nav-list>
+
+
+  </mat-sidenav>
+
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+
+    </div>
+    <app-footer></app-footer>
+
+  </div>
+
+</mat-sidenav-container>

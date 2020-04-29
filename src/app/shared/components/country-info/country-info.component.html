@@ -1,0 +1,90 @@
+<div *ngIf="error">
+    <h1 class="center">{{'country error' | translate}} - {{country}}  </h1>
+    <h2 class="center">{{'server error' | translate}} </h2>
+</div>
+
+<div *ngIf="!countryDetails[0] && !error" class="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="countryDetails[0]">
+    <table class="mdl-data-table" style="max-width: 400px;">
+
+        <tbody *ngFor="let country of countryDetails" style="text-align: center;">
+            <tr>
+                <td>
+                    <span><img class="flag-img mat-elevation-z10" src="{{country.flag}}"
+                            alt="{{country.name}} flag"></span></td>
+                <td>
+                    <h2>{{country.name}}</h2>
+                </td>
+                <td>
+                    <h4>{{'region' | translate}}:</h4>
+                    <span>{{country.region}}</span>
+                </td>
+            </tr>
+
+            <br>
+
+            <tr>
+                <td>
+                    <h4>{{'subregion' | translate}}:</h4>
+                    <span>{{country.subregion}}</span>
+                </td>
+                <td>
+                    <h4>{{'capital' | translate}}: </h4>
+                    <span>{{country.capital}}</span>
+                </td>
+                <td>
+                    <h4>{{'languages' | translate}}:</h4>
+                    <span>{{country.languages}}</span>
+                </td>
+            </tr>
+
+            <br>
+
+            <tr>
+                <td>
+                    <h4>{{'topLevelDomain' | translate}}: </h4>
+                    <span>{{country.topLevelDomain}}</span>
+                </td>
+                <td>
+                    <h4>{{'population' | translate}}: </h4>
+                    <span [countUp]="country.population">0</span>
+                </td>
+                <td>
+                    <h4>{{'nativeName' | translate}}: </h4>
+                    <span>{{country.nativeName}}</span>
+                </td>
+            </tr>
+
+            <br>
+
+            <tr>
+                <td>
+                    <h4>{{'currencieName' | translate}}:</h4>
+                    <span>{{country.currencieName}} <br>{{country.currencieSymbol}}</span>
+                </td>
+                <td>
+                    <h4>{{'borders' | translate}}: </h4>
+                    <span>{{country.borders}}</span>
+                </td>
+                <td></td>
+            </tr>
+
+            <br>
+
+            <tr>
+                <td></td>
+                <td>
+                    <h4>{{'timezones' | translate}}: </h4>
+                    <span style="max-width: 150px;">{{country.timezones}}</span>
+                </td>
+                <td></td>
+            </tr>
+
+            <br>
+
+        </tbody>
+    </table>
+</div>

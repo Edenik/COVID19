@@ -1,0 +1,33 @@
+.flag {
+  width: 50px;
+  border-radius: 15%;
+}
+
+.global-card {
+  margin: 0 auto;
+  width: 260px;
+  margin-bottom: 25px;
+}
+
+
+.sort {
+  max-width: 220px;
+  height: 70px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  margin-top: 20px;
+
+  mat-form-field {
+    bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .country-card {
+    width: 260px;
+  }
+
+  .fxLayout {
+    margin: 0 auto;
+  }
+}

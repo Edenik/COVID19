@@ -1,0 +1,80 @@
+.table-container {
+  margin-bottom: 5px;
+}
+
+td,
+th {
+  text-align: center;
+}
+
+.country {
+  text-align: justify;
+  width: 15%;
+
+  div {
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+
+  }
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 8%;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.fav-icon {
+  bottom: 5px;
+}
+
+
+@media screen and (max-width: 920px) {
+  .table-container {
+    width: 100%;
+    overflow: auto;
+  }
+
+
+  .td-pad {
+    padding: 0 5px 0 5px;
+  }
+
+  .td-pad-more {
+    padding: 0 30px 0 30px;
+  }
+
+  td,
+  th {
+    width: 15%;
+  }
+
+  td {
+    height: 70px;
+  }
+
+  .flag {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+
+  .country {
+    padding: 0 30px 0 30px !important;
+  }
+
+}

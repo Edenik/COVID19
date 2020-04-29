@@ -1,0 +1,106 @@
+<div *ngIf="!countriesReport[0] && !error" class="center">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="error">
+    <h1 class="center">{{'data error' | translate}} </h1>
+    <h2 class="center">{{'server error' | translate}} </h2>
+</div>
+
+<div *ngIf="countriesReport[0]">
+    <mat-accordion>
+        <mat-expansion-panel class="global-card mat-elevation-z10">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>{{'World Statistics' | translate}}:</h2>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+                <tbody *ngFor="let country of globalReport" style="text-align: center;">
+                    <tr>
+                        <td>{{'Total Cases' | translate}}: <br>
+                            <span [countUp]="country.cases">0</span></td>
+                        <td>{{'New Cases' | translate}}: <br>
+                            <span [countUp]="country.todayCases">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{'Cases per 1Mil' | translate}}: <br>
+                            <span [countUp]="country.casesPerOneMillion">0</span></td>
+                        <td>{{'Total Deaths' | translate}}: <br>
+                            <span [countUp]="country.deaths">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{'New Deaths' | translate}}: <br>
+                            <span [countUp]="country.todayDeaths">0</span></td>
+                        <td>{{'Deaths per 1Mil' | translate}}: <br>
+                            <span [countUp]="country.deathsPerOneMillion">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{'Active' | translate}}: <br>
+                            <span [countUp]="country.active">0</span></td>
+                        <td>{{'Recovered' | translate}}: <br>
+                            <span [countUp]="country.recovered">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>{{'Critical' | translate}}: <br>
+                            <span [countUp]="country.critical">0</span></td>
+                        <td>{{'Affected Countries' | translate}}: <br>
+                            <span [countUp]="country.affectedCountries">0</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="center" style="margin-top: 10px;">
+        <mat-card style="padding: 0 16px 0 16px;">
+            <mat-form-field>
+                <mat-label>{{'Sort By' | translate}} </mat-label>
+                <mat-select>
+                    <mat-option [value]="1" (click)="sort('cases')">
+                        {{'Total Cases' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('todayCases')">
+                        {{'New Cases' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('casesPerOneMillion')">
+                        {{'Cases per 1Mil' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('deaths')">
+                        {{'Total Deaths' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('todayDeaths')">
+                        {{'New Deaths' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('deathsPerOneMillion')">
+                        {{'Deaths per 1Mil' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('active')">
+                        {{'Active' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('critical')">
+                        {{'Critical' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('recovered')">
+                        {{'Recovered' | translate}}
+                    </mat-option>
+                    <mat-option [value]="1" (click)="sort('tests')">
+                        {{'Tests' | translate}}
+                    </mat-option>
+                    <!-- <mat-option [value]="1" (click)="sort('testsPerOneMillion')">
+                        {{'Tests per 1Mil' | translate}}
+                    </mat-option> -->
+
+
+                </mat-select>
+            </mat-form-field>
+        </mat-card>
+
+    </div>
+    <app-expand-table [data]="countriesReport"></app-expand-table>
+    <!-- <app-table [data]="countriesReport"></app-table>  -->
+</div>
+
+
+
