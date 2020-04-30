@@ -50,7 +50,7 @@
                 </td>
                 <td>
                     <h4>{{'population' | translate}}: </h4>
-                    <span [countUp]="country.population">0</span>
+                    {{country.population | number }}
                 </td>
                 <td>
                     <h4>{{'nativeName' | translate}}: </h4>

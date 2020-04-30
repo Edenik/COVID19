@@ -2,8 +2,7 @@
   <mat-sidenav #sidenav class="app-sidenav mat-elevation-z10" [opened]="!isScreenSmall()"
     [mode]="isScreenSmall() ? 'over' : 'side'">
     <mat-toolbar class=" mat-elevation-z10" color="primary">
-      {{'Menu' | translate}}
-
+      <!-- {{'Menu' | translate}} -->
     </mat-toolbar>
 
     <mat-nav-list>
@@ -62,9 +61,6 @@
 
 
 
-
-
-
       <mat-divider></mat-divider>
 
       <mat-nav-list>
@@ -106,14 +102,16 @@
         </mat-menu>
       </mat-nav-list>
 
-      <mat-list-item>
-        <a matLine>
-          <mat-icon>update</mat-icon>
-          &nbsp;&nbsp;<span>{{'Updated' | translate}}: {{lastUpdate | date:'dd/MM/yy, HH:mm'}}</span>
-        </a>
-      </mat-list-item>
 
     </mat-nav-list>
+
+    <mat-list role="list">
+      <mat-list-item>
+        <mat-icon>update</mat-icon>
+        &nbsp;&nbsp; {{'Updated' | translate}}: {{lastUpdate | date:'dd/MM/yy, HH:mm'}}
+    </mat-list-item>  
+    </mat-list>
+    
 
 
   </mat-sidenav>

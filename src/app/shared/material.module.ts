@@ -43,7 +43,7 @@ import { AboutComponent } from '../modules/about/about.component';
 import { ProjectsComponent } from '../modules/projects/projects.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableComponent } from './components/table/table.component';
-import { CountUpModule } from 'ngx-countup';
+// import { CountUpModule } from 'ngx-countup';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -111,7 +111,6 @@ const routes: Routes = [{
     MatSnackBarModule,
     MatBottomSheetModule,
     MatProgressSpinnerModule,
-    CountUpModule,
     HttpClientModule,
     HighchartsChartModule,
     TranslateModule.forRoot({
@@ -147,7 +146,6 @@ const routes: Routes = [{
     MatInputModule,
     MatSortModule,
     MatSnackBarModule,
-    CountUpModule,
     MatBottomSheetModule,
     MatProgressSpinnerModule,
     MatTabsModule,

@@ -20,33 +20,33 @@
                 <tbody *ngFor="let country of globalReport" style="text-align: center;">
                     <tr>
                         <td>{{'Total Cases' | translate}}: <br>
-                            <span [countUp]="country.cases">0</span></td>
+                            {{country.cases | number}}</td>
                         <td>{{'New Cases' | translate}}: <br>
-                            <span [countUp]="country.todayCases">0</span></td>
+                            {{country.todayCases | number }}</td>
                     </tr>
                     <tr>
                         <td>{{'Cases per 1Mil' | translate}}: <br>
-                            <span [countUp]="country.casesPerOneMillion">0</span></td>
+                            {{country.casesPerOneMillion | number }}</td>
                         <td>{{'Total Deaths' | translate}}: <br>
-                            <span [countUp]="country.deaths">0</span></td>
+                            {{country.deaths | number}}</td>
                     </tr>
                     <tr>
                         <td>{{'New Deaths' | translate}}: <br>
-                            <span [countUp]="country.todayDeaths">0</span></td>
+                            {{country.todayDeaths | number }}</td>
                         <td>{{'Deaths per 1Mil' | translate}}: <br>
-                            <span [countUp]="country.deathsPerOneMillion">0</span></td>
+                            {{country.deathsPerOneMillion | number }}</td>
                     </tr>
                     <tr>
                         <td>{{'Active' | translate}}: <br>
-                            <span [countUp]="country.active">0</span></td>
+                            {{country.active | number}}</td>
                         <td>{{'Recovered' | translate}}: <br>
-                            <span [countUp]="country.recovered">0</span></td>
+                            {{country.recovered | number}}</td>
                     </tr>
                     <tr>
                         <td>{{'Critical' | translate}}: <br>
-                            <span [countUp]="country.critical">0</span></td>
+                            {{country.critical | number }}</td>
                         <td>{{'Affected Countries' | translate}}: <br>
-                            <span [countUp]="country.affectedCountries">0</span></td>
+                            {{country.affectedCountries | number }}</td>
                     </tr>
                 </tbody>
             </table>
