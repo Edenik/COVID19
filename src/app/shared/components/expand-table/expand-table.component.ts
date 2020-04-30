@@ -47,7 +47,6 @@ export class ExpandTableComponent implements OnInit {
   }
 
   saveCountry(country: string) {
-    // ${this.translate.instant('country')}
     this.snackBar.open(`Country: ${country} added to favorites!`, "", {
       duration: 2000,
     });
@@ -57,152 +56,66 @@ export class ExpandTableComponent implements OnInit {
 
   sort(object) {
     console.log(object)
-    this.error = true;
-    if (object == 'cases') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.cases < obj2.cases) {
-          return 1;
-        }
 
-        if (obj1.cases > obj2.cases) {
-          return -1;
-        }
+    var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
+      switch (object) {
+        case 'cases':
+          var sortObject1 = obj1.cases
+          var sortObject2 = obj2.cases
+          break;
+        case 'active':
+          var sortObject1 = obj1.active
+          var sortObject2 = obj2.active
+          break;
+        case 'deaths':
+          var sortObject1 = obj1.deaths
+          var sortObject2 = obj2.deaths
+          break;
+        case 'critical':
+          var sortObject1 = obj1.critical
+          var sortObject2 = obj2.critical
+          break;
+        case 'recovered':
+          var sortObject1 = obj1.recovered
+          var sortObject2 = obj2.recovered
+          break;
+        case 'casesToday':
+          var sortObject1 = obj1.todayCases
+          var sortObject2 = obj2.todayCases
+          break;
+        case 'deathsToday':
+          var sortObject1 = obj1.todayDeaths
+          var sortObject2 = obj2.todayDeaths
+          break;
+        case 'deathsPerOneMillion':
+          var sortObject1 = obj1.deathsPerOneMillion
+          var sortObject2 = obj2.deathsPerOneMillion
+          break;
+        case 'casesPerOneMillion':
+          var sortObject1 = obj1.casesPerOneMillion
+          var sortObject2 = obj2.casesPerOneMillion
+          break;
+        case 'tests':
+          var sortObject1 = obj1.tests
+          var sortObject2 = obj2.tests
+          break;
+      }
 
-        return 0;
-      });
-    }
+      if (sortObject1 < sortObject2) {
+        return 1;
+      }
+      if (sortObject1 > sortObject2) {
+        return -1;
+      }
+      return 0;
+    });
 
-    if (object == 'active') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.active < obj2.active) {
-          return 1;
-        }
 
-        if (obj1.active > obj2.active) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'deaths') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.deaths < obj2.deaths) {
-          return 1;
-        }
-
-        if (obj1.deaths > obj2.deaths) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'critical') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.critical < obj2.critical) {
-          return 1;
-        }
-
-        if (obj1.critical > obj2.critical) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'recovered') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.recovered < obj2.recovered) {
-          return 1;
-        }
-
-        if (obj1.recovered > obj2.recovered) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'casesToday') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-
-        if (obj1.todayCases < obj2.todayCases) {
-          return 1;
-        }
-
-        if (obj1.todayCases > obj2.todayCases) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'deathsToday') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.todayDeaths < obj2.todayDeaths) {
-          return 1;
-        }
-
-        if (obj1.todayDeaths > obj2.todayDeaths) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'deathsPerOneMillion') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.deathsPerOneMillion < obj2.deathsPerOneMillion) {
-          return 1;
-        }
-
-        if (obj1.deathsPerOneMillion > obj2.deathsPerOneMillion) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'casesPerOneMillion') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.casesPerOneMillion < obj2.casesPerOneMillion) {
-          return 1;
-        }
-
-        if (obj1.casesPerOneMillion > obj2.casesPerOneMillion) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
-
-    if (object == 'tests') {
-      var sortedArray: CountryReport[] = this.data.sort((obj1, obj2) => {
-        if (obj1.tests < obj2.tests) {
-          return 1;
-        }
-
-        if (obj1.tests > obj2.tests) {
-          return -1;
-        }
-
-        return 0;
-      });
-    }
 
     this.dataSource = new MatTableDataSource(this.data);
     console.table(this.data)
-    this.error = false;
   }
+
 
   deleteCountry(country: string) {
     this.snackBar.open(`Country: ${country} deleted from favorites!`, "", {
